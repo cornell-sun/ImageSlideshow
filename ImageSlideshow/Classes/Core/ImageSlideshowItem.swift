@@ -7,6 +7,10 @@
 
 import UIKit
 
+public protocol DidZoomDelegate {
+    func isZoomedIn(isZoomed: Bool)
+}
+
 /// Used to wrap a single slideshow item and allow zooming on it
 @objcMembers
 open class ImageSlideshowItem: UIScrollView, UIScrollViewDelegate {
@@ -28,6 +32,8 @@ open class ImageSlideshowItem: UIScrollView, UIScrollViewDelegate {
 
     /// If set to true image is initially zoomed in
     open var zoomInInitially = false
+
+    open var didZoomDelegate: DidZoomDelegate?
 
     fileprivate var lastFrame = CGRect.zero
     fileprivate var imageReleased = false
@@ -222,6 +228,7 @@ open class ImageSlideshowItem: UIScrollView, UIScrollViewDelegate {
 
     open func scrollViewDidZoom(_ scrollView: UIScrollView) {
         setPictoCenter()
+        didZoomDelegate?.isZoomedIn(isZoomed: isZoomed())
     }
 
     open func viewForZooming(in scrollView: UIScrollView) -> UIView? {
