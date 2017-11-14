@@ -8,7 +8,9 @@
 import UIKit
 
 @objcMembers
-open class FullScreenSlideshowViewController: UIViewController {
+open class FullScreenSlideshowViewController: UIViewController, DidZoomDelegate {
+
+    open var captions: [String]!
 
     open var slideshow: ImageSlideshow = {
         let slideshow = ImageSlideshow()
@@ -58,7 +60,6 @@ open class FullScreenSlideshowViewController: UIViewController {
 
     override open func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = backgroundColor
         slideshow.backgroundColor = backgroundColor
 
@@ -74,6 +75,11 @@ open class FullScreenSlideshowViewController: UIViewController {
         closeButton.setImage(UIImage(named: "Frameworks/ImageSlideshow.framework/ImageSlideshow.bundle/ic_cross_white@2x"), for: UIControlState())
         closeButton.addTarget(self, action: #selector(FullScreenSlideshowViewController.close), for: UIControlEvents.touchUpInside)
         view.addSubview(closeButton)
+
+         slideshow.currentPageChanged = { page in
+            self.slideshow.currentSlideshowItem?.didZoomDelegate = self
+            self.captionLabel.text = self.captions[page]
+        }
     }
 
     override open var prefersStatusBarHidden: Bool {
@@ -89,8 +95,20 @@ open class FullScreenSlideshowViewController: UIViewController {
         }
     }
 
+    public func isZoomedIn(isZoomed: Bool) {
+        captionLabel.isHidden = isZoomed
+    }
+
+    func layoutCaption() {
+     let imageFrame = view.convert((slideshow.currentSlideshowItem?.imageView.frame)!, from: slideshow.currentSlideshowItem?.imageView)
+        captionLabel.frame = CGRect(x: 10, y: imageFrame.maxY + 10, width: view.bounds.width - 20, height: view.frame.height - imageFrame.maxY - 30)
+        captionLabel.center.x = view.center.x
+    }
+
     open override func viewDidLayoutSubviews() {
         slideshow.frame = view.frame
+        layoutCaption()
+        slideshow.currentSlideshowItem?.didZoomDelegate = self
     }
 
     @objc func close() {
