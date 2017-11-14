@@ -24,7 +24,7 @@ Image slideshow is a Swift library providing customizable image slideshow with c
   s.screenshots     = "http://cl.ly/image/2v193I0G0h0Z/ImageSlideshow2.gif"
   s.license          = 'MIT'
   s.author           = { "Petr Zvonicek" => "zvonicek@gmail.com" }
-  s.source           = { :git => "https://github.com/zvonicek/ImageSlideshow.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/AAAstorga/ImageSlideshow.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/zvonicek'
 
   s.platform     = :ios, '8.0'
@@ -65,6 +65,12 @@ Image slideshow is a Swift library providing customizable image slideshow with c
     subspec.dependency 'ImageSlideshow/Core'
     subspec.dependency 'Parse', '~> 1.14'
     subspec.source_files = 'ImageSlideshow/Classes/InputSources/ParseSource.swift'
+  end
+
+  s.subspec 'SnapKit' do |subspec|
+    subspec.dependency 'ImageSlideshow/Core'
+    subspec.dependency 'SnapKit', '~> 4.0'
+    subspec.source_files = 'ImageSlideshow/Classes/Core/FullScreenSlideshowViewController.swift'
   end
 
   s.default_subspec = 'Core'
