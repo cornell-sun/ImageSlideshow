@@ -22,6 +22,16 @@ open class FullScreenSlideshowViewController: UIViewController {
         return slideshow
     }()
 
+    open var captionLabel: UILabel = {
+        let label = UILabel()
+        label.text = ""
+        label.numberOfLines = 0
+        label.font = UIFont(name: "Georgia", size: 13)
+        label.textColor = .white
+        return label
+
+    }()
+
     /// Close button 
     open var closeButton = UIButton()
 
@@ -57,6 +67,7 @@ open class FullScreenSlideshowViewController: UIViewController {
         }
 
         view.addSubview(slideshow)
+        view.addSubview(captionLabel)
 
         // close button configuration
         closeButton.frame = CGRect(x: 10, y: 20, width: 40, height: 40)
