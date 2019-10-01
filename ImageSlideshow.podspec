@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "ImageSlideshow"
-  s.version          = "1.4.1"
+  s.version          = "1.5.0"
   s.summary          = "Image slideshow written in Swift with circular scrolling, timer and full screen viewer"
 
 # This description is used to generate tags and improve search results.
@@ -24,10 +24,10 @@ Image slideshow is a Swift library providing customizable image slideshow with c
   s.screenshots     = "http://cl.ly/image/2v193I0G0h0Z/ImageSlideshow2.gif"
   s.license          = 'MIT'
   s.author           = { "Petr Zvonicek" => "zvonicek@gmail.com" }
-  s.source           = { :git => "https://github.com/AAAstorga/ImageSlideshow.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/cornell-sun/ImageSlideshow.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/zvonicek'
 
-  s.platform     = :ios, '8.0'
+  s.platform     = :ios, '10.0'
   s.requires_arc = true
 
   s.subspec 'Core' do |core|
