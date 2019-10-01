@@ -46,10 +46,10 @@ public enum ImagePreload {
 open class ImageSlideshow: UIView {
 
     /// Scroll View to wrap the slideshow
-    open let scrollView = UIScrollView()
+    public let scrollView = UIScrollView()
 
     /// Page Control shown in the slideshow
-    open let pageControl = UIPageControl()
+    public let pageControl = UIPageControl()
 
     /// Activity indicator shown when loading image
     open var activityIndicator: ActivityIndicatorFactory? {
@@ -143,7 +143,7 @@ open class ImageSlideshow: UIView {
     open var preload = ImagePreload.all
 
     /// Content mode of each image in the slideshow
-    open var contentScaleMode: UIViewContentMode = UIViewContentMode.scaleAspectFit {
+    open var contentScaleMode: UIView.ContentMode = UIView.ContentMode.scaleAspectFit {
         didSet {
             for view in slideshowItems {
                 view.imageView.contentMode = contentScaleMode
